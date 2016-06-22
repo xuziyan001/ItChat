@@ -384,7 +384,7 @@ class WeChatClient:
                 self.storageClass.store_msg(m['FromUserName'], m['Content'], 'from')
     def send_msg(self, toUserName = None, msg = 'Test Message'):
         if self.storageClass.find_user(toUserName): toUserName = self.storageClass.find_user(toUserName)
-        out.print_line('toUserName: %s' % toUserName, True)
+        out.print_line('toUserName: %s' % toUserName)
         url = '%s/webwxsendmsg'%self.loginInfo['url']
         payloads = {
                 'BaseRequest': self.loginInfo['BaseRequest'],
@@ -400,6 +400,7 @@ class WeChatClient:
         headers = { 'ContentType': 'application/json; charset=UTF-8' }
         r = self.s.post(url, data = json.dumps(payloads, ensure_ascii = False), headers = headers)
         self.storageClass.store_msg(toUserName, msg, 'to') #encoding problems
+        out.print_line('send success, msg: %s' % msg)
     def upload_file(self, fileDir, isPicture = False):
         url = 'https://file%s.wx.qq.com/cgi-bin/mmwebwx-bin/webwxuploadmedia?f=json'%('2' if '2' in self.loginInfo['url'] else '')
         # save it on server

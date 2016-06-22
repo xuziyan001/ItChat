@@ -39,7 +39,7 @@ def get_reply(msg, s, client, isGroupChat = False, cmdPrint = PRINT_ON_CMD):
         if not isGroupChat and cmdPrint:
             out.print_line('%s: %s'%(s.find_nickname(msg['FromUserName']), msg['Content']))
         content = msg['Content']
-        out.print_line('I received: %s' % content, True)
+        out.print_line('I received: %s, type: %s' % (content, type(content)), True)
         # Plugins should be added in order as ('name', function)
         pluginOrder = [('vote', vote), ('autoreply', autoreply), ('tuling', tuling.get_response)]
         if isGroupChat: pluginOrder = [('autoreply', autoreply), ('tuling', tuling.get_response)]
@@ -51,37 +51,39 @@ def get_reply(msg, s, client, isGroupChat = False, cmdPrint = PRINT_ON_CMD):
                     reply = r
                     getReply = True
                     break
-        if not getReply: reply = '么么哒~'
+        if not getReply: 
+            reply = u'么么哒～'
+            #out.print_line('%s' % reply, True)
     elif msg['MsgType'] == 'Map':
-        return '什么鬼'
+        return u'什么鬼'
         #if not isGroupChat and cmdPrint:
         #    out.print_line('%s is at %s'%(s.find_nickname(msg['FromUserName']), msg['Content']))
     elif msg['MsgType'] == 'Picture':
-        return '好酷哦!'
+        return u'好酷哦!'
         #if not isGroupChat and cmdPrint:
         #    out.print_line('%s sent a picture [%s]'%(s.find_nickname(msg['FromUserName']), msg['Content']))
     elif msg['MsgType'] == 'Recording':
-        return '不听不听不听'
+        return u'不听不听不听'
         #if not isGroupChat and cmdPrint:
         #    out.print_line('%s sent a recording'%(s.find_nickname(msg['FromUserName'])))
     elif msg['MsgType'] == 'Card':
-        return '哈喽, %s!'%msg['Content']
+        return u'哈喽, %s!'%msg['Content']
         #if not isGroupChat and cmdPrint:
         #    out.print_line('%s sent a business card of [%s]'%(s.find_nickname(msg['FromUserName']), msg['Content']))
     elif msg['MsgType'] == 'Sharing':
-        return '"%s" 好酷!'%msg['Content']
+        return u'"%s" 好酷!'%msg['Content']
         #if not isGroupChat and cmdPrint:
         #    out.print_line('%s sent a web about [%s]'%(s.find_nickname(msg['FromUserName']), msg['Content']))
     elif msg['MsgType'] == 'Attachment':
-        return '"%s" 是啥哦!'%msg['Content']
+        return u'"%s" 是啥哦!'%msg['Content']
         #if not isGroupChat and cmdPrint:
         #    out.print_line('%s sent an attachment: [%s]'%(s.find_nickname(msg['FromUserName']), msg['Location']))
     elif msg['MsgType'] == 'Video':
-        return '老司机哦'
+        return u'老司机哦'
         #if not isGroupChat and cmdPrint:
         #    out.print_line('%s sent a video [%s]'%(s.find_nickname(msg['FromUserName']), msg['Content']))
     elif msg['MsgType'] == 'Note':
-        if not isGroupChat and cmdPrint: out.print_line('通知: %s'%(msg['Content']))
+        if not isGroupChat and cmdPrint: out.print_line(u'通知: %s'%(msg['Content']))
     else:
         pass#out.print_line(str(msg))
     out.print_line('response: %s' % reply)
