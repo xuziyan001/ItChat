@@ -2,7 +2,6 @@ import os, sys
 import requests, time, re
 import thread, subprocess
 import json, xml.dom.minidom, mimetypes
-from urllib import unquote
 import config, storage, out, log, tools
 
 try:
@@ -374,7 +373,9 @@ class WeChatClient:
         return rl
     def store_msg(self, l):
         for m in l:
-            if m['FromUserName'] == self.storageClass.userName: continue
+            if m['FromUserName'] == self.storageClass.userName:
+                self.msgList.append(m)
+                continue
             if '@@' in m['FromUserName']:
                 if not self.robot: break
                 self.msgList.append(m)

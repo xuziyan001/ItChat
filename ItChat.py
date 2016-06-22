@@ -1,6 +1,10 @@
 #coding=utf8
-import time, sys
-if sys.version[:3] != '2.7': print('This project should be run with python2.7');sys.exit()
+import time
+import sys
+if sys.version[:3] != '2.7':
+    print('This project should be run with python2.7')
+    sys.exit()
+
 import itchat.storage, itchat.out, itchat.argparser, itchat.robot
 from itchat.client import WeChatClient
 from plugin.ChatLikeCMD import ChatLikeCMD
@@ -21,7 +25,7 @@ if __name__ == '__main__':
 
     client_s = itchat.storage.Storage()
     if ROBOT:
-        client = WeChatClient(client_s, robot = True)
+        client = WeChatClient(client_s, robot=True)
     else:
         client = WeChatClient(client_s)
 
