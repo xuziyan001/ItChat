@@ -9,7 +9,8 @@ try:
     from plugin.QRCode import QRCode
     CMD_QRCODE = True
 except:
-    CMD_QRCODE = False
+    #CMD_QRCODE = False
+    CMD_QRCODE = True
 
 BASE_URL = config.BASE_URL
 DEBUG = False

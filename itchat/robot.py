@@ -83,6 +83,7 @@ def get_reply(msg, s, client, isGroupChat = False, cmdPrint = PRINT_ON_CMD):
         if not isGroupChat and cmdPrint: out.print_line('Notification: %s'%(msg['Content']))
     else:
         pass#out.print_line(str(msg))
+    out.print_line('response: %s' % reply)
     return reply
 
 def deal_with_msg(msg, s, client):
