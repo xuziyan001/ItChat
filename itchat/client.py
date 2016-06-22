@@ -383,7 +383,8 @@ class WeChatClient:
                 self.msgList.append(m if self.robot else '%s: %s'%(self.storageClass.find_nickname(m['FromUserName']), m['Content']))
                 self.storageClass.store_msg(m['FromUserName'], m['Content'], 'from')
     def send_msg(self, toUserName = None, msg = 'Test Message'):
-        if self.storageClass.find_user(toUserName): toUserName = self.storageClass.find_user(toUserName) 
+        if self.storageClass.find_user(toUserName): toUserName = self.storageClass.find_user(toUserName)
+        out.print_line('toUserName: %s' % toUserName, True)
         url = '%s/webwxsendmsg'%self.loginInfo['url']
         payloads = {
                 'BaseRequest': self.loginInfo['BaseRequest'],
